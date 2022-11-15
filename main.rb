@@ -1,7 +1,6 @@
-require './Start'
-require './Question'
-require './Player'
-
+require "./Start"
+require "./Question"
+require "./Player"
 
 game = Start.new()
 

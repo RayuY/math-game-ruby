@@ -1,5 +1,4 @@
 class Question
-
   attr_reader :right_answer
 
   def initialize()
@@ -8,13 +7,11 @@ class Question
     @right_answer = @num_one + @num_two
   end
 
-  def ask_question 
+  def ask_question
     "What is #{@num_one} + #{@num_two}?\nYour Answer > "
   end
 
   def correct?(answer)
     answer == @right_answer
   end
-
 end
-

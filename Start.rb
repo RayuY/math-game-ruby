@@ -1,6 +1,5 @@
 class Start
-  
-  attr_reader :round , :current_player
+  attr_reader :round, :current_player
 
   def initialize
     @players = []
@@ -10,9 +9,8 @@ class Start
 
   # takes in user names and start game
   def game_start
-
     puts "Welcome to the math deathmatch! Who will walk out alive?"
-    
+
     print "Name of first brave contestant: "
     player_one = Player.new($stdin.gets.chomp)
     @players.push(player_one)
@@ -32,7 +30,6 @@ class Start
       start_round
     end
     end_game
-
   end
 
   # tracks how many rounds since game start
@@ -69,12 +66,11 @@ class Start
 
   # runs round with question randomizer
   def start_round
-
     increment_round
     rotate_players
 
     question = Question.new()
-    
+
     puts "---- Round #{@round} ----"
     print "#{@current_player.name}, #{question.ask_question}"
     player_answer = $stdin.gets.chomp.to_i
@@ -88,7 +84,5 @@ class Start
       # subtract current player lives by 1
       @current_player.lose
     end
-
   end
-
 end
