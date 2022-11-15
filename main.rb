@@ -1,5 +1,5 @@
 require './Start'
-require './Questoin'
+require './Question'
 require './Player'
 
 
