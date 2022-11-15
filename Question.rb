@@ -1,6 +1,6 @@
 class Question
 
-  attr_reader : right_answer
+  attr_reader :right_answer
 
   def initialize()
     @num_one = rand(1..20).to_i
@@ -9,7 +9,7 @@ class Question
   end
 
   def ask_question 
-    "What is #{@num_one} + #{@num_two}"
+    "What is #{@num_one} + #{@num_two}?\nYour Answer > "
   end
 
   def correct?(answer)
