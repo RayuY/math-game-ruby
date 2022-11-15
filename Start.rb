@@ -8,6 +8,7 @@ class Start
     @current_player = nil
   end
 
+  # takes in user names and start game
   def game_start
 
     puts "Welcome to the math deathmatch! Who will walk out alive?"
@@ -26,6 +27,7 @@ class Start
 
     @current_player = @players[rand(0..1)]
 
+    # runs rounds till one player has depleted all lives.
     while (current_player.lives != 0)
       start_round
     end
@@ -33,10 +35,12 @@ class Start
 
   end
 
+  # tracks how many rounds since game start
   def increment_round
     @round += 1
   end
 
+  # changes current player when called
   def rotate_players
     if @current_player == @players[0]
       @current_player = @players[1]
@@ -45,13 +49,15 @@ class Start
     end
   end
 
-
+  # prints out results of the game
   def end_game
     puts "---- GAME FINISHED ----
     "
+    # current_player will be the loser from last start_round
     puts "#{@current_player.name}, you have ran out of lives, you are DEAD.
     "
 
+    # switches to winner
     rotate_players
 
     puts "---- CONGRATS #{@current_player.name} ----, you WON!!
@@ -61,7 +67,7 @@ class Start
     puts "---- GOOD BYE AND HOPE TO SEE YOU AGAIN! ----"
   end
 
-
+  # runs round with question randomizer
   def start_round
 
     increment_round
@@ -79,6 +85,7 @@ class Start
     else
       puts "Oh no, #{@current_player.name} lost 1 life cause he/she didn't get the right answer
       "
+      # subtract current player lives by 1
       @current_player.lose
     end
 
