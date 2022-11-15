@@ -20,9 +20,11 @@ class Start
     player_two = Player.new($stdin.gets.chomp)
     @players.push(player_two)
 
-    puts "Who goes first you ask? It's random.. now here we go, first question!"
+    puts
+    puts "Who goes first you ask? It's random.. each player has 3 lives.. now here we go, first question!
+    "
 
-    @current_player = players[rand(0..1)]
+    @current_player = @players[rand(0..1)]
 
     while (current_player.lives != 0)
       start_round
@@ -32,21 +34,31 @@ class Start
   end
 
   def increment_round
-    @round++
+    @round += 1
   end
 
   def rotate_players
-    @current_player = @players[0]? @players[1] : @players[0]
+    if @current_player == @players[0]
+      @current_player = @players[1]
+    else
+      @current_player = @players[0]
+    end
   end
 
+
   def end_game
-    puts "--- GAME FINISHED ---"
-    puts "#{@current_player.name}, you have ran out of lives, you are DEAD."
+    puts "---- GAME FINISHED ----
+    "
+    puts "#{@current_player.name}, you have ran out of lives, you are DEAD.
+    "
 
     rotate_players
-    puts "-- CONGRATS #{@current_player.name} --, you WON!!"
-    puts "Your final score is #{current_player.lives}/3, total rounds prevailed: #{@round}"
-    puts "--- GOOD BYE AND HOPE TO SEE YOU AGAIN! ---"
+
+    puts "---- CONGRATS #{@current_player.name} ----, you WON!!
+    "
+    puts "Your final score is #{current_player.lives}/3, total rounds prevailed: #{@round / 2}
+    "
+    puts "---- GOOD BYE AND HOPE TO SEE YOU AGAIN! ----"
   end
 
 
@@ -57,14 +69,17 @@ class Start
 
     question = Question.new()
     
-    puts "--- Round #{@round} ---"
+    puts "---- Round #{@round} ----"
     print "#{@current_player.name}, #{question.ask_question}"
-    player_answer = $stdin.gets.chomp
+    player_answer = $stdin.gets.chomp.to_i
 
-    if question.right_answer(player_answer)
-      puts "You got it right!"
+    if question.correct?(player_answer)
+      puts "#{@current_player.name} got it right!
+      "
     else
-      puts "Oh no, you lost 1 live cause you didn't get the right answer"
+      puts "Oh no, #{@current_player.name} lost 1 life cause he/she didn't get the right answer
+      "
+      @current_player.lose
     end
 
   end
